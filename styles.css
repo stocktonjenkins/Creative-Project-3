@@ -1,0 +1,56 @@
+/* Responsive columns */
+
+@media screen and (max-width: 1000px) {
+    .col {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+    }
+}
+
+/* Style the counter cards */
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+    width: 18rem;
+}
+
+.album-art {
+    height: 100px;
+    width: 100px;
+    text-align: center;
+    margin: auto;
+    margin-top: 16px;
+    display: block;
+}
+
+.center {
+    display: block;
+    margin:auto;
+}
+
+.btn-secondary {
+    background-color: white;
+    color: #007bff;
+    border: 2px solid #007bff;
+    margin: 5px;
+}
+
+.btn-secondary:hover {
+
+    background-color: white;
+
+    color: red;
+
+    border: 2px solid red;
+
+}
+
+h1 {
+    text-align: center;
+    font-family: Optima, sans-serif;
+    font-size: 75;
+}

@@ -1,0 +1,72 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body onload="app.fetchREST()">
+    <h1>Stockton Jenkins Music</h1>
+    <hr>
+    <div id="app">
+        <form style="text-align:center">
+            <input class="btn btn-secondary" style="margin:10px" name="sort" type="submit" v-on:click.prevent="sort" value="Sort Music">
+            <input style="margin:10px" name="sort" type="radio" v-model="sortSelected" value="songName">By Song Name
+            <input style="margin:10px" name="sort" type="radio" v-model="sortSelected" value="albumName">By Album Name
+        </form>
+        <div v-if="fetchMade">
+            <div class="container" style="margin-top:20px">
+                <div class="row" style="margin-bottom:15px" v-for="results in chunkedCards">
+                    <div v-for="result in results" class="col">
+                        <div class="card center" id="songCard">
+                            <div class="album-art" style="width:100px;">
+                                <img v-bind:src="result.artworkUrl100" alt="Card image cap">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">{{ result.trackName }}</h5>
+                                <p class="card-text">
+                                    Album: {{ result.collectionCensoredName }}
+                                </p>
+                                <p class="card-text">
+                                    Track Number: {{ result.trackNumber }}
+                                </p>
+                                <p class="card-text">
+                                    Price: ${{ result.trackPrice }}
+                                </p>
+                                <a v-bind:href="result.trackViewUrl" class="btn btn-primary">Listen on Apple Music</a>
+                                <button v-on:click.prevent="toggleSongInfo" class="btn btn-secondary">Song Info</button>
+                            </div>
+                        </div>
+                        <div v-if="songInfo">
+                            <div class="card center">
+                                <div class="card-header">
+                                    <i>{{ result.trackName }} / <b>{{ result.collectionCensoredName }}</b></i>
+                                </div>
+                                <div class="card-body">
+                                    <div class="col" style="text-align:left">
+                                        <div class="card-text">
+                                            Genre: {{ result.primaryGenreName }}
+                                        </div>
+                                        <div class="card-text">
+                                            Release Date: {{ result.releaseDate }}
+                                        </div>
+                                        <div class="card-text">
+                                            Album Track Count: {{ result.trackCount }}
+                                        </div>
+                                    </div>
+                                    <a class="btn btn-secondary" style="text-align:center" v-bind:href="result.previewUrl">Preview</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
+    <script src="script.js"></script>
+    <script src="https://unpkg.com/moment"></script>
+</body>
+
+</html>

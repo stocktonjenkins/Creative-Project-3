@@ -13,9 +13,8 @@ var app = new Vue({
     },
     methods: {
         fetchREST() {
-            var extension = "Stockton+Jenkins";
-            var url = "https://itunes.apple.com/search?term=" + extension;
-            console.log("URL: " + url);
+            var url = "https://itunes.apple.com/search?term=Stockton+Jenkins";
+            console.log("API URL: " + url);
             fetch(url)
                 .then((data) => {
                     return data.json();
@@ -85,4 +84,4 @@ var app = new Vue({
             return chunkedCards;
         },
     }
-})
+});

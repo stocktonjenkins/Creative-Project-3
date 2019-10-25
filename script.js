@@ -9,7 +9,7 @@ var app = new Vue({
         results: [],
         song: '',
         fetchMade: false,
-        songInfo: false,
+        songInfoArray: [],
         sortSelected: '',
     },
     methods: {
@@ -24,10 +24,11 @@ var app = new Vue({
                     this.results = json.results;
                     let i = 0;
                     this.results.forEach(song => {
-                        song.songInfo = this.songInfo;
+                        song.songInfo = false;
                         song.id = i;
+                        this.songInfoArray.push({'id': song.id, 'songInfoToggled': false});
                         i++;
-                    })
+                    });
                     this.results.forEach(song => {
                         song.releaseDate = song.releaseDate.substring(0, 10);
                         song.releaseDate = moment(song.releaseDate).format('MMMM Do YYYY');
@@ -36,13 +37,11 @@ var app = new Vue({
                 });
         },
         toggleSongInfo(song) {
-            console.log('song id: ',song.id);
-            let j = this.results.filter(result => {
+            let j = this.songInfoArray.filter(result => {
                 return result.id === song.id;
             })[0].id;
-            this.results[j].songInfo = !this.results[j].songInfo;
-            console.log(this.results[j].songInfo)
-            return this.results[j].songInfo;
+            
+            this.songInfoArray[j].songInfoToggled = !this.songInfoArray[j].songInfoToggled;
         },
         sort() {
             if (this.sortSelected === "songName") {

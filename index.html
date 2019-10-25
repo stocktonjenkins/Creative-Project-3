@@ -34,10 +34,11 @@
                                     Price: ${{ result.trackPrice }}
                                 </p>
                                 <a v-bind:href="result.trackViewUrl" class="btn btn-primary">Listen on Apple Music</a>
-                                <button v-on:click.prevent="toggleSongInfo" class="btn btn-secondary">Song Info</button>
+                                <button v-model="result.songInfo" v-on:click="toggleSongInfo(result)" class="btn btn-secondary">Song Info</button>
                             </div>
                         </div>
-                        <div v-if="songInfo">
+            
+                        <div v-if="result.songInfo">
                             <div class="card center">
                                 <div class="card-header">
                                     <i>{{ result.trackName }} / <b>{{ result.collectionCensoredName }}</b></i>

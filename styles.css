@@ -40,11 +40,8 @@
 }
 
 .btn-secondary:hover {
-
     background-color: white;
-
     color: red;
-
     border: 2px solid red;
 
 }

@@ -21,7 +21,6 @@ var app = new Vue({
                     return data.json();
                 })
                 .then((json) => {
-                    console.log(json);
                     this.results = json.results;
 
                     this.results.forEach(song => {
@@ -29,7 +28,6 @@ var app = new Vue({
                         song.releaseDate = moment(song.releaseDate).format('MMMM Do YYYY');
                     })
 
-                    console.log("results: ", this.results);
                     this.fetchMade = true;
                 });
         },
@@ -85,7 +83,6 @@ var app = new Vue({
                     chunkedCards.push(row);
                 }
             }
-            console.log('CC: ', chunkedCards);
             return chunkedCards;
         },
     }

@@ -26,8 +26,7 @@ var app = new Vue({
                     this.results.forEach(song => {
                         song.releaseDate = song.releaseDate.substring(0, 10);
                         song.releaseDate = moment(song.releaseDate).format('MMMM Do YYYY');
-                    })
-
+                    });
                     this.fetchMade = true;
                 });
         },
